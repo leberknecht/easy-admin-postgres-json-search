@@ -17,8 +17,8 @@ class Version20180403201835 extends AbstractMigration
 
         $this->addSql('CREATE SEQUENCE product_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE product (id INT NOT NULL, values JSON NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('INSERT INTO product (id, values) VALUES (1, json_array_elements(\'["testing", "sweet"]\')');
-        $this->addSql('INSERT INTO product (id, values) VALUES (2, \'{["42", "23", "sweet"]}\')');
+        $this->addSql('INSERT INTO product (id, values) VALUES (1, to_json(array[\'testing\', \'sweet\']))');
+        $this->addSql('INSERT INTO product (id, values) VALUES (2, to_json(array[\'42\', \'23\', \'sweet\']))');
         $this->addSql('COMMENT ON COLUMN product.values IS \'(DC2Type:json_array)\'');
     }
 
